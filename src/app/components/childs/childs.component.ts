@@ -7,13 +7,13 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./childs.component.css'],
 })
 export class ChildsComponent {
-  public message: string = '';
+  public parentMessage: string = '';
 
   constructor(private componentsService: ComponentsService) {}
 
-  public setMessageParent() {
-    this.componentsService.setMessageParent('child using service');
-    this.message = this.componentsService.getMessageParent;
-    console.log('PARENT message :' + this.message);
+  public setParentMessage() {
+    this.componentsService.setParentMessage('child using service');
+    this.parentMessage = this.componentsService.getParentMessage;
+    console.log('PARENT message :' + this.parentMessage);
   }
 }

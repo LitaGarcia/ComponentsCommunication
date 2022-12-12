@@ -4,23 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ComponentsService {
-  private _messageParent: string = '';
-  private _messageChild: string = '';
+  private _parentMessage: string = '';
+  private _childMessage: string = '';
 
   constructor() {}
 
-  get getMessageParent() {
-    return this._messageParent;
+  get getParentMessage() {
+    return this._parentMessage;
   }
 
   get getMessageChild() {
-    return this._messageChild;
+    return this._childMessage;
   }
 
-  public setMessageParent(message: string) {
-    this._messageParent = message;
+  public setParentMessage(message: string) {
+    this._parentMessage = message;
   }
-  public setMessageChild(message: string) {
-    this._messageChild = message;
+  public setChildMessage(message: string) {
+    this._childMessage = message;
   }
 }

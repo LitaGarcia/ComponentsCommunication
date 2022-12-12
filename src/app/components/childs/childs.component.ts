@@ -9,11 +9,13 @@ import { ComponentsService } from '../components.service';
 export class ChildsComponent {
   public parentMessage: string = '';
 
+  get childMessage() {
+    return this.componentsService.getMessageChild;
+  }
   constructor(private componentsService: ComponentsService) {}
 
   public setParentMessage() {
     this.componentsService.setParentMessage('child using service');
-    this.parentMessage = this.componentsService.getParentMessage;
     console.log('PARENT message :' + this.parentMessage);
   }
 }

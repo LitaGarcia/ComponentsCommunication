@@ -11,10 +11,9 @@ export class ParentsComponent {
 
   constructor(private componentsService: ComponentsService) {}
 
-  public updateMessage() {
-    this.componentsService.setMessageParent('parent using service');
-
-    this.message = this.componentsService.getMessageParent;
-    console.log(this.message);
+  public setMessageChild() {
+    this.componentsService.setMessageChild('parent using service');
+    this.message = this.componentsService.getMessageChild;
+    console.log('PARENT message :' + this.message);
   }
 }

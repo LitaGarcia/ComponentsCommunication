@@ -11,10 +11,9 @@ export class ChildsComponent {
 
   constructor(private componentsService: ComponentsService) {}
 
-  public updateMessage() {
-    this.componentsService.setMessageChild('child using service');
-
-    this.message = this.componentsService.getMessageChild;
-    console.log(this.message);
+  public setMessageParent() {
+    this.componentsService.setMessageParent('child using service');
+    this.message = this.componentsService.getMessageParent;
+    console.log('CHILD message :' + this.message);
   }
 }

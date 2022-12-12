@@ -7,7 +7,8 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./parents.component.css'],
 })
 export class ParentsComponent {
-  @Input()
+  public messageParent: string = '';
+
   public childMessage: string = '';
   public childMessageOutput: string = '';
 
@@ -17,6 +18,9 @@ export class ParentsComponent {
 
   get parentMessage() {
     return this.componentsService.getParentMessage;
+  }
+  public setChildMessageWithInput() {
+    this.messageParent = 'parent using input property';
   }
   constructor(private componentsService: ComponentsService) {}
 

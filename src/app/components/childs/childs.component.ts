@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsService } from '../components.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./childs.component.css'],
 })
 export class ChildsComponent {
+  @Input() messageParent: string = '';
   @Output() onChildSendMessage: EventEmitter<string> =
     new EventEmitter<string>();
 

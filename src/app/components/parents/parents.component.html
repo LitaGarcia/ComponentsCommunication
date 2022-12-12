@@ -2,7 +2,10 @@
   <h2>parent</h2>
   <p>message: {{ parentMessage || childMessageOutput }}</p>
   <button (click)="setChildMessage()">use service</button>
-  <button>use input property</button>
+  <button (click)="setChildMessageWithInput()">use input property</button>
   <button>use observable</button>
-  <app-childs (onChildSendMessage)="getMessageChild($event)"></app-childs>
+  <app-childs
+    (onChildSendMessage)="getMessageChild($event)"
+    [messageParent]="messageParent"
+  ></app-childs>
 </div>

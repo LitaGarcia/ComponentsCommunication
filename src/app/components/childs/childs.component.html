@@ -1,6 +1,6 @@
 <div class="wrapper-child">
   <h2>child</h2>
-  <p>message: {{ childMessage }}</p>
+  <p>message: {{ childMessage || messageParent}}</p>
   <button (click)="setParentMessage()">use service</button>
   <button (click)="sendChildMessageWithOutput()">use output property</button>
   <button>use observable</button>

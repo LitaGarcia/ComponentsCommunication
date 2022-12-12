@@ -14,6 +14,6 @@ export class ParentsComponent {
   public setMessageChild() {
     this.componentsService.setMessageChild('parent using service');
     this.message = this.componentsService.getMessageChild;
-    console.log('PARENT message :' + this.message);
+    console.log('CHILD message :' + this.message);
   }
 }

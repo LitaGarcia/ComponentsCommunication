@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentsService } from '../components.service';
 
 @Component({
@@ -7,7 +7,13 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./parents.component.css'],
 })
 export class ParentsComponent {
+  @Input()
   public childMessage: string = '';
+  public childMessageOutput: string = '';
+
+  public getMessageChild(e: string) {
+    this.childMessageOutput = e;
+  }
 
   get parentMessage() {
     return this.componentsService.getParentMessage;
@@ -16,6 +22,5 @@ export class ParentsComponent {
 
   public setChildMessage() {
     this.componentsService.setChildMessage('parent using service');
-    console.log('CHILD message :' + this.childMessage);
   }
 }

@@ -1,8 +1,8 @@
 <div class="wrapper-parent">
   <h2>parent</h2>
-  <p>message: {{ parentMessage }}</p>
+  <p>message: {{ parentMessage || childMessageOutput }}</p>
   <button (click)="setChildMessage()">use service</button>
   <button>use input property</button>
   <button>use observable</button>
-  <app-childs></app-childs>
+  <app-childs (onChildSendMessage)="getMessageChild($event)"></app-childs>
 </div>

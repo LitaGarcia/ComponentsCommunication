@@ -8,6 +8,7 @@ import { ComponentsService } from '../components.service';
 })
 export class ChildsComponent {
   public message: string = '';
+
   constructor(private componentsService: ComponentsService) {}
 
   public updateMessage() {

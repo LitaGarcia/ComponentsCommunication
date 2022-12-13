@@ -8,15 +8,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./parents.component.css'],
 })
 export class ParentsComponent {
+  message: string = '';
   messageParent: string = '';
   parentMessageSubs: string = '';
-  childMessage: string = '';
-  childMessageOutput: string = '';
-  childMessageSubs: string = '';
-  childMessageSubscription: Subscription | undefined;
+  childMessageSubscription: Subscription;
+
+  constructor(private componentsService: ComponentsService) {
+    this.childMessageSubscription =
+      this.componentsService.childMessage$.subscribe((message) => {
+        this.message = message;
+      });
+  }
 
   getMessageChild(e: string) {
-    this.childMessageOutput = e;
+    this.message = e;
   }
 
   get parentMessage() {
@@ -27,23 +32,9 @@ export class ParentsComponent {
     this.messageParent = 'parent using input property';
   }
 
-  constructor(private componentsService: ComponentsService) {}
-
-  ngOnInit() {
-    this.componentsService.parentMessage$.subscribe((parentMessageSubs) => {
-      this.parentMessageSubs = parentMessageSubs;
-      console.log(parentMessageSubs);
-    });
-    //subscribe to the newchildmessage
-    this.childMessageSubscription =
-      this.componentsService.childMessage$.subscribe((childMessageSubs) => {
-        this.childMessageSubs = childMessageSubs;
-        console.log(childMessageSubs);
-      });
-  }
-  ngOnDestroy() {
-    this.childMessageSubscription?.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.childMessageSubscription?.unsubscribe();
+  // }
 
   updateParentMessageWithObservable() {
     this.componentsService.parentMessage$.emit('parent using observable');

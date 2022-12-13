@@ -12,36 +12,27 @@ export class ChildsComponent {
   @Output() onChildSendMessage: EventEmitter<string> =
     new EventEmitter<string>();
 
-  parentMessage: string = '';
+  message: string = '';
   parentMessageSubs: string = '';
   messageParentSubscription: Subscription | undefined;
   childMessageSubs: string = '';
+
+  constructor(private componentsService: ComponentsService) {
+    this.messageParentSubscription =
+      this.componentsService.parentMessage$.subscribe((message) => {
+        this.message = message;
+      });
+  }
 
   get childMessage() {
     return this.componentsService.getMessageChild;
   }
 
-  constructor(private componentsService: ComponentsService) {}
-
-  ngOnInit() {
-    this.messageParentSubscription =
-      this.componentsService.parentMessage$.subscribe((parentMessageSubs) => {
-        this.parentMessageSubs = parentMessageSubs;
-      });
-    //create a subscribe for childmessage
-    this.componentsService.childMessage$.subscribe((childMessageSubs) => {
-      this.childMessageSubs = childMessageSubs;
-      console.log(childMessageSubs);
-    });
-  }
-
-  ngOnDestroy() {
-    this.messageParentSubscription?.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.messageParentSubscription?.unsubscribe();
+  // }
 
   updateChildMessageWithOutput() {
-    console.log('eliminando subs');
-
     this.onChildSendMessage.emit('child using output event');
   }
 

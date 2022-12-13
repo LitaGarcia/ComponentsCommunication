@@ -1,8 +1,7 @@
 <div class="wrapper-parent">
   <h2>parent</h2>
-  <p>message: {{ parentMessage || childMessageOutput }}</p>
-  <p>message: {{ childMessageOutput }}</p>
-  <p>message: {{ childMessageSubs }}</p>
+  <p>message: {{ parentMessage }}</p>
+  <h2>newmessage: {{ message || parentMessage }}</h2>
   <button (click)="updateChildMessageWithService()">use service</button>
   <button (click)="updateParentMessageWithInputProperty()">
     use input property

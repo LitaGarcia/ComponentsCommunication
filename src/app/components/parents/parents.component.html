@@ -1,9 +1,13 @@
 <div class="wrapper-parent">
   <h2>parent</h2>
   <p>message: {{ parentMessage || childMessageOutput }}</p>
-  <button (click)="setChildMessage()">use service</button>
-  <button (click)="setChildMessageWithInput()">use input property</button>
-  <button>use observable</button>
+  <p>message: {{ childMessageOutput }}</p>
+  <p>message: {{ childMessageSubs }}</p>
+  <button (click)="updateChildMessageWithService()">use service</button>
+  <button (click)="updateParentMessageWithInputProperty()">
+    use input property
+  </button>
+  <button (click)="updateParentMessageWithObservable()">use observable</button>
   <app-childs
     (onChildSendMessage)="getMessageChild($event)"
     [messageParent]="messageParent"

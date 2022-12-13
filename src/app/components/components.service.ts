@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class ComponentsService {
   private _parentMessage: string = '';
   private _childMessage: string = '';
+
+  parentMessage$: EventEmitter<string> = new EventEmitter<string>();
+  childMessage$: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
@@ -17,10 +20,10 @@ export class ComponentsService {
     return this._childMessage;
   }
 
-  public setParentMessage(message: string) {
+  public updateParentMessageWithService(message: string) {
     this._parentMessage = message;
   }
-  public setChildMessage(message: string) {
+  public updateChildMessageWithService(message: string) {
     this._childMessage = message;
   }
 }

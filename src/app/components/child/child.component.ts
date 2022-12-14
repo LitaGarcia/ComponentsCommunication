@@ -3,33 +3,33 @@ import { Subscription } from 'rxjs';
 import { ComponentsService } from '../components.service';
 
 @Component({
-  selector: 'app-childs',
-  templateUrl: './childs.component.html',
-  styleUrls: ['./childs.component.css'],
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
 })
-export class ChildsComponent {
-  @Input() messageParent: string = '';
+export class ChildComponent {
+  @Input() parentMessage: string = '';
   @Output() onChildSendMessage: EventEmitter<string> =
     new EventEmitter<string>();
 
   message: string = '';
   parentMessageSubs: string = '';
-  messageParentSubscription: Subscription | undefined;
+  parentMessageSubscription: Subscription | undefined;
   childMessageSubs: string = '';
 
   constructor(private componentsService: ComponentsService) {
-    this.messageParentSubscription =
+    this.parentMessageSubscription =
       this.componentsService.parentMessage$.subscribe((message) => {
         this.message = message;
       });
   }
 
-  get childMessage() {
-    return this.componentsService.getMessageChild;
+  get getChildMessage() {
+    return this.componentsService.getchildMessage;
   }
 
   // ngOnDestroy() {
-  //   this.messageParentSubscription?.unsubscribe();
+  //   this.parentMessageSubscription?.unsubscribe();
   // }
 
   updateChildMessageWithOutput() {

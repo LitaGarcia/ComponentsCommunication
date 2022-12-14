@@ -1,15 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentsService } from '../components.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-parents',
-  templateUrl: './parents.component.html',
-  styleUrls: ['./parents.component.css'],
+  selector: 'app-parent',
+  templateUrl: './parent.component.html',
+  styleUrls: ['./parent.component.css'],
 })
-export class ParentsComponent {
+export class ParentComponent {
   message: string = '';
-  messageParent: string = '';
+  parentMessage: string = '';
   parentMessageSubs: string = '';
   childMessageSubscription: Subscription;
 
@@ -20,16 +20,16 @@ export class ParentsComponent {
       });
   }
 
-  getMessageChild(e: string) {
+  getchildMessage(e: string) {
     this.message = e;
   }
 
-  get parentMessage() {
+  get getParentMessage() {
     return this.componentsService.getParentMessage;
   }
 
   updateParentMessageWithInputProperty() {
-    this.messageParent = 'parent using input property';
+    this.parentMessage = 'parent using input property';
   }
 
   // ngOnDestroy() {

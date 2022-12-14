@@ -16,7 +16,7 @@ export class ComponentsService {
     return this._parentMessage;
   }
 
-  get getMessageChild() {
+  get getchildMessage() {
     return this._childMessage;
   }
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ComponentsService } from '../components.service';
 
 @Component({
@@ -8,20 +8,29 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./child.component.css'],
 })
 export class ChildComponent {
-  @Input() parentMessage: string = '';
-  @Output() onChildSendMessage: EventEmitter<string> =
-    new EventEmitter<string>();
+  private _parentMessage: string = '';
+
+  get pMessage() {
+    return this._parentMessage;
+  }
+
+  @Input() set parentMessage(value: any) {
+    console.log('previously: ' + this._parentMessage);
+    this._parentMessage = value;
+    console.log('currently: ' + value);
+    this.message = value;
+  }
+
+  @Output()
+  onChildSendMessage: EventEmitter<string> = new EventEmitter<string>();
 
   message: string = '';
-  parentMessageSubs: string = '';
-  parentMessageSubscription: Subscription | undefined;
-  childMessageSubs: string = '';
+  parentMessageObservable$!: Observable<string>;
 
   constructor(private componentsService: ComponentsService) {
-    this.parentMessageSubscription =
-      this.componentsService.parentMessage$.subscribe((message) => {
-        this.message = message;
-      });
+    this.parentMessageObservable$ =
+      this.componentsService.parentMessageObservable$;
+    this.parentMessageObservable$.subscribe((msg) => (this.message = msg));
   }
 
   get getChildMessage() {
@@ -42,7 +51,7 @@ export class ChildComponent {
     );
   }
 
-  updateChildMessageWithObservable() {
-    this.componentsService.childMessage$.emit('child using observable');
+  setChildMessageWithObservable() {
+    this.componentsService.setChildMessage('child using service');
   }
 }

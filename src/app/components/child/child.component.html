@@ -1,8 +1,11 @@
 <div class="wrapper-child">
   <h2>child</h2>
-  <p>message: {{ message || parentMessage || getChildMessage }}</p>
-  <h2>TEST: {{ message }}</h2>
+  <p>SERVICE: {{ message }}}</p>
+  <p>INPUT: {{ parentMessage }}</p>
+  <P>SUBSCRIBE: {{ message }}</P>
+
+  <h2>TEST ALL IN 1 VARIABLE: {{ message }}</h2>
   <button (click)="updateParentMessageWithService()">use service</button>
   <button (click)="updateChildMessageWithOutput()">use output property</button>
-  <button (click)="updateChildMessageWithObservable()">use observable</button>
+  <button (click)="setChildMessageWithObservable()">use observable</button>
 </div>

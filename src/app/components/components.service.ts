@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,24 +7,33 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class ComponentsService {
   private _parentMessage: string = '';
   private _childMessage: string = '';
-
-  parentMessage$: EventEmitter<string> = new EventEmitter<string>();
-  childMessage$: EventEmitter<string> = new EventEmitter<string>();
-
+  private _childMessage$: Subject<string> = new Subject();
+  childMessageObservable$: Observable<string> =
+    this._childMessage$!.asObservable();
+  private _parentMessage$: Subject<string> = new Subject();
+  parentMessageObservable$: Observable<string> =
+    this._parentMessage$!.asObservable();
   constructor() {}
 
-  get getParentMessage() {
+  getParentMessage() {
     return this._parentMessage;
   }
 
-  get getchildMessage() {
+  getchildMessage() {
     return this._childMessage;
   }
 
-  public updateParentMessageWithService(message: string) {
+  updateParentMessageWithService(message: string) {
     this._parentMessage = message;
   }
-  public updateChildMessageWithService(message: string) {
+  updateChildMessageWithService(message: string) {
     this._childMessage = message;
+  }
+
+  setChildMessage(message: string) {
+    this._childMessage$.next(message);
+  }
+  setParentMessage(message: string) {
+    this._parentMessage$.next(message);
   }
 }

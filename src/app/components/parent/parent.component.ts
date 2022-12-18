@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentsService } from '../components.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-parent',
@@ -11,20 +11,19 @@ export class ParentComponent {
   message: string = '';
   parentMessage: string = '';
   parentMessageSubs: string = '';
-  childMessageSubscription: Subscription;
+  childMessageObservable$!: Observable<string>;
 
   constructor(private componentsService: ComponentsService) {
-    this.childMessageSubscription =
-      this.componentsService.childMessage$.subscribe((message) => {
-        this.message = message;
-      });
+    this.childMessageObservable$ =
+      this.componentsService.childMessageObservable$;
+    this.childMessageObservable$.subscribe((msg) => (this.message = msg));
   }
 
   getchildMessage(e: string) {
     this.message = e;
   }
 
-  get getParentMessage() {
+  getParentMessage() {
     return this.componentsService.getParentMessage;
   }
 
@@ -35,9 +34,8 @@ export class ParentComponent {
   // ngOnDestroy() {
   //   this.childMessageSubscription?.unsubscribe();
   // }
-
-  updateParentMessageWithObservable() {
-    this.componentsService.parentMessage$.emit('parent using observable');
+  setParentMessageWithObservable() {
+    this.componentsService.setParentMessage('parent using observable');
   }
 
   updateChildMessageWithService() {

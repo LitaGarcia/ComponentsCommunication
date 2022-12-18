@@ -19,28 +19,27 @@ export class ParentComponent {
     this.childMessageObservable$.subscribe((msg) => (this.message = msg));
   }
 
-  getchildMessage(e: string) {
+  getChildMessageWithOutput(e: string) {
     this.message = e;
   }
 
-  getParentMessage() {
-    return this.componentsService.getParentMessage;
+  get getChildMessageWithService() {
+    return this.componentsService.getChildMessageWithService();
   }
 
-  updateParentMessageWithInputProperty() {
+  setParentMessageWithInputProperty() {
     this.parentMessage = 'parent using input property';
+  }
+
+  setParentMessageWithService() {
+    this.componentsService.setParentMessageWithService('parent using service');
+  }
+
+  setParentMessageWithObservable() {
+    this.componentsService.setParentMessage('parent using observable');
   }
 
   // ngOnDestroy() {
   //   this.childMessageSubscription?.unsubscribe();
   // }
-  setParentMessageWithObservable() {
-    this.componentsService.setParentMessage('parent using observable');
-  }
-
-  updateChildMessageWithService() {
-    this.componentsService.updateChildMessageWithService(
-      'parent using service'
-    );
-  }
 }

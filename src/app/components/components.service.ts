@@ -15,18 +15,17 @@ export class ComponentsService {
     this._parentMessage$!.asObservable();
   constructor() {}
 
-  getParentMessage() {
+  getParentMessageWithService() {
     return this._parentMessage;
   }
-
-  getchildMessage() {
-    return this._childMessage;
+  getChildMessageWithService(){
+    return this._childMessage
   }
 
-  updateParentMessageWithService(message: string) {
+  setParentMessageWithService(message: string) {
     this._parentMessage = message;
   }
-  updateChildMessageWithService(message: string) {
+  setChildMessageWithService(message: string) {
     this._childMessage = message;
   }
 

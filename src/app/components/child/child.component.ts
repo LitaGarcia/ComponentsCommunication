@@ -9,18 +9,10 @@ import { ComponentsService } from '../components.service';
 })
 export class ChildComponent {
   private _parentMessage: string = '';
-
-  get pMessage() {
-    return this._parentMessage;
-  }
-
   @Input() set parentMessage(value: any) {
-    console.log('previously: ' + this._parentMessage);
     this._parentMessage = value;
-    console.log('currently: ' + value);
     this.message = value;
   }
-
   @Output()
   onChildSendMessage: EventEmitter<string> = new EventEmitter<string>();
 
@@ -33,25 +25,24 @@ export class ChildComponent {
     this.parentMessageObservable$.subscribe((msg) => (this.message = msg));
   }
 
-  get getChildMessage() {
-    return this.componentsService.getchildMessage;
+  get getParentMessageWithService() {
+    return this.componentsService.getParentMessageWithService();
   }
 
-  // ngOnDestroy() {
-  //   this.parentMessageSubscription?.unsubscribe();
-  // }
-
-  updateChildMessageWithOutput() {
+  setChildMessageWithOutput() {
     this.onChildSendMessage.emit('child using output event');
   }
 
-  updateParentMessageWithService() {
-    this.componentsService.updateParentMessageWithService(
-      'child using service'
-    );
+  setChildMessageWithService() {
+    this.componentsService.setChildMessageWithService('child using service');
   }
 
   setChildMessageWithObservable() {
-    this.componentsService.setChildMessage('child using service');
+    this.componentsService.setChildMessage('child using observable');
   }
+
+    // ngOnDestroy() {
+  //   this.parentMessageSubscription?.unsubscribe();
+  // }
+  
 }

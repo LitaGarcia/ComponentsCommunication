@@ -1,11 +1,10 @@
 <div class="wrapper-child">
   <h2>child</h2>
-  <p>SERVICE: {{ message }}}</p>
-  <p>INPUT: {{ parentMessage }}</p>
-  <P>SUBSCRIBE: {{ message }}</P>
-
-  <h2>TEST ALL IN 1 VARIABLE: {{ message }}</h2>
-  <button (click)="updateParentMessageWithService()">use service</button>
-  <button (click)="updateChildMessageWithOutput()">use output property</button>
+  <p>Using SERVICE: {{ getParentMessageWithService }}</p>
+  <p>Using OUTPUT: {{ message }}</p>
+  <P>Using Observable: {{ message }}</P>
+  <p>Trying to print in one variable: {{ message }}</p>
+  <button (click)="setChildMessageWithService()">use service</button>
+  <button (click)="setChildMessageWithOutput()">use output property</button>
   <button (click)="setChildMessageWithObservable()">use observable</button>
 </div>

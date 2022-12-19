@@ -25,7 +25,7 @@ export class ChildComponent {
     this.parentMessageObservable$.subscribe((msg) => (this.message = msg));
   }
 
-  get getParentMessageWithService() {
+  getParentMessageWithService() {
     return this.componentsService.getParentMessageWithService();
   }
 
@@ -41,8 +41,7 @@ export class ChildComponent {
     this.componentsService.setChildMessage('child using observable');
   }
 
-    // ngOnDestroy() {
+  // ngOnDestroy() {
   //   this.parentMessageSubscription?.unsubscribe();
   // }
-  
 }

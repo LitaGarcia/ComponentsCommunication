@@ -23,7 +23,7 @@ export class ParentComponent {
     this.message = e;
   }
 
-  get getChildMessageWithService() {
+  getChildMessageWithService() {
     return this.componentsService.getChildMessageWithService();
   }
 

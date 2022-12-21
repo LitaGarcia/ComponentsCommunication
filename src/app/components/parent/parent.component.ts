@@ -13,12 +13,14 @@ export class ParentComponent {
   parentMessageSubs: string = '';
   childMessageObservable$!: Observable<string>;
 
-  constructor(private componentsService: ComponentsService) {
+  constructor(private componentsService: ComponentsService) {}
+
+  ngOnInit(): void {
     this.childMessageObservable$ =
       this.componentsService.childMessageObservable$;
     this.childMessageObservable$.subscribe((msg) => (this.message = msg));
   }
-
+  
   getChildMessageWithOutput(e: string) {
     this.message = e;
   }

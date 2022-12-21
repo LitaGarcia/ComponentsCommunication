@@ -19,7 +19,9 @@ export class ChildComponent {
   message: string = '';
   parentMessageObservable$!: Observable<string>;
 
-  constructor(private componentsService: ComponentsService) {
+  constructor(private componentsService: ComponentsService) {}
+
+  ngOnInit(): void {
     this.parentMessageObservable$ =
       this.componentsService.parentMessageObservable$;
     this.parentMessageObservable$.subscribe((msg) => (this.message = msg));
